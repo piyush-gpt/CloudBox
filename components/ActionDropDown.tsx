@@ -125,11 +125,22 @@ export const ActionDropDown = ({ file }: { file: any }) => {
     );
   };
 
-  const handleDownload = (url: string, name: string) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = name; // Set the file name for download
-    a.click(); // Trigger the download
+  const handleDownload = async (url: string, name: string, extension:string) => { // Replace with your file URL
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob(); // Convert response to a blob
+      const downloadUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", name +'.'+extension); // Replace with desired filename
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl); // Clean up memory
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+    }
   };
 
   return (
@@ -169,7 +180,7 @@ export const ActionDropDown = ({ file }: { file: any }) => {
                   className="flex items-center gap-2"
                   onClick={(e) => {
                     e.preventDefault(); // Prevent the default action of the link
-                    handleDownload(file.url, file.name); // Trigger the download
+                    handleDownload(file.url, file.name, file.extension); // Trigger the download
                   }}
                 >
                   <Image

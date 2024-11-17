@@ -7,6 +7,7 @@
     "@typescript-eslint/no-explicit-any": "off" ,
     "no-unused-vars": "off",   // Disable unused variable check
     "eqeqeq": "off",           // Disable equality check rule
-    "react/no-unescaped-entities": "off" 
+    "react/no-unescaped-entities": "off" ,
+     "prefer-const": "off"
   }
 }

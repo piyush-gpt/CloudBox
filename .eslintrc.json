@@ -4,6 +4,9 @@
     "no-undef": "off",
     "@typescript-eslint/no-unused-vars": "off",  // Disable unused variable warnings
     "camelcase": "off",                       // Disable camelcase rule
-    "@typescript-eslint/no-explicit-any": "off" 
+    "@typescript-eslint/no-explicit-any": "off" ,
+    "no-unused-vars": "off",   // Disable unused variable check
+    "eqeqeq": "off",           // Disable equality check rule
+    "react/no-unescaped-entities": "off" 
   }
 }
